@@ -1,0 +1,164 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #ffd6e0 0%, #e4b7e5 100%);
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --text-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --button-bg: linear-gradient(135deg, #ff9a8b 0%, #ff6a88 100%);
+    --button-shadow: rgba(255, 106, 136, 0.5);
+    --font-quote: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    background: var(--bg-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.quote-card {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    max-width: 550px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quote-wrapper {
+    min-height: 150px; /* Prevents layout jump */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quote-text {
+    font-family: var(--font-quote);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.author-name {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.generate-btn {
+    background: var(--button-bg);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px var(--button-shadow);
+}
+
+.generate-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px var(--button-shadow);
+}
+
+.hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    opacity: 0.2;
+    animation: float 10s infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 10px;
+}
+
+.heart:nth-child(1) { left: 10%; animation-duration: 12s; }
+.heart:nth-child(2) { left: 20%; animation-duration: 8s; animation-delay: 2s; }
+.heart:nth-child(3) { left: 40%; animation-duration: 15s; animation-delay: 5s; }
+.heart:nth-child(4) { left: 70%; animation-duration: 9s; animation-delay: 1s; }
+.heart:nth-child(5) { left: 90%; animation-duration: 11s; animation-delay: 3s; }
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0); }
+    100% { transform: translateY(-10vh) rotate(720deg); }
+}
+
+@media (max-width: 768px) {
+    .quote-card {
+        padding: 2rem;
+    }
+
+    .quote-text {
+        font-size: 2rem;
+    }
+}
+
+.floating-heart {
+    position: fixed;
+    font-size: 2rem;
+    color: var(--button-shadow);
+    animation: floatUp 4s ease-out forwards;
+    pointer-events: none;
+    user-select: none;
+    z-index: 9999;
+    opacity: 0.7;
+}
+
+.floating-heart::before {
+    content: '💗';
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-80vh) scale(0.5);
+        opacity: 0;
+    }
+}
